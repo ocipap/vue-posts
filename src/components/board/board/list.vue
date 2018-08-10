@@ -32,7 +32,6 @@
       <span class="page__count">{{ pageNum + 1}} / {{ pageCount }} 페이지</span>
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="button">다음</button>
     </div>
-    <button class="button" @click="check()">check</button>
   </div>
 </template>
 <script>
@@ -93,9 +92,6 @@
           this.filteredArray = filteredArray;
         }
       },
-      check(){
-        console.log(this.filteredArray);
-      }
     },
     computed: {
       pageCount() {
@@ -109,9 +105,11 @@
       }
     },
     created() {
-      this.filteredArray = this.posts;
       this.$EventBus.$on('changeType', (type) => {
         this.filteredList(type);
+      });
+      this.$EventBus.$on('searchInput', (search) => {
+        this.filteredList(search.searchOption, search.searchInput);
       });
     }
   }

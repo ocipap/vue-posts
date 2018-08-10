@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-1 has-text-right search__header">구분</div>
       <div class="column search__option__content">
-        <input type="radio" name="typeValue" id="all" v-model="typeValue" value="all" checked>
+        <input type="radio" name="typeValue" id="all" v-model="typeValue" value="all">
         <label id="all_label" for="all" class="button">
           <span class="icon">
             <i class="fas fa-check-circle"></i>
@@ -27,15 +27,13 @@
       <div class="column is-1 has-text-right search__header">검색어</div>
       <div class="column search__input__content is-clearfix">
         <div class="select is-pulled-left">
-          <select name="search" id="">
-            <option v-for="(search, index) in searches" :key="index" :value="search.value">{{search.name}}</option>
+          <select name="search" id="" v-model="searchOption">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option v-for="(search, index) in searches" :key="index" :value="search.value" >{{search.name}}</option>
           </select>
         </div>
         <div class="is-pulled-left search__input__cover">
           <input class="input" type="text" placeholder="Text input">
-        </div>
-        <div class="is-pulled-left">
-          <button class="button is-dark">검색</button>
         </div>
       </div>
     </div>
@@ -63,25 +61,27 @@ import constant from '../../../constant'
             name: '기타'
           },
         ],
-        searches: [{
-            name: '전체',
-            value: 'all'
-          },
+        searches: [
           {
             name: '제목',
-            value: 'title'
+            value: 'title',
           },
           {
             name: '작성자',
-            value: 'author'
+            value: 'author',
           }
         ],
-        typeValue: "all"
+        typeValue: "",
+        searchOption: "",
+        searchInput: ""
       }
     },
     watch: {
       typeValue: function () {
         this.$EventBus.$emit('changeType', this.typeValue);
+      },
+      searchInput: function(){
+        this.$EventBus.$emit('searchInput', {searchOption: this.searchOption,searchInput: this.searchInput})
       }
     }
   }

@@ -40,8 +40,13 @@ const actions = {
     })
   },
   [constant.LOAD_POST_ONE](store, payload) {
+    let jwt= this._vm.$cookie.getCookie("infranics");
     let postIndex = payload.postIndex;
-    this._vm.$http.get(CONFIG.POST_ONE.replace("${postIndex}", postIndex)).then(res => {
+    this._vm.$http.get(CONFIG.POST_ONE.replace("${postIndex}", postIndex),{
+      headers: {
+        "infranics": jwt
+      }
+    }).then(res => {
       if (res.status === 200) {
         store.commit(constant.LOAD_POST_ONE, res.data);
         store.commit(constant.LOAD_REPLYS, res.data.replies);

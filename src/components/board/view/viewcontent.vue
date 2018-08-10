@@ -14,9 +14,7 @@
       <div class="column is-1">등록일</div>
       <div class="column is-5">{{post.created}}</div>
     </div>
-    <div class="view__content is-fullwidth">
-      {{post.content}}
-    </div>
+    <div v-html="content(post.content)" class="view__content is-fullwidth"></div>
     <hr>
 
   </div>
@@ -24,7 +22,12 @@
 <script>
   export default {
     name: "ViewContent",
-    props: ["post"]
+    props: ["post"],
+    methods: {
+      content(content){
+        return content.replace(/(\n|\r\n)/g, '</br>');
+      }
+    }
   }
 
 </script>
