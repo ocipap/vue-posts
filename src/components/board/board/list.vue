@@ -92,6 +92,9 @@
           this.filteredArray = filteredArray;
         }
       },
+      searchedList(option, input){
+        console.log(option ,input)
+      }
     },
     computed: {
       pageCount() {
@@ -109,7 +112,10 @@
         this.filteredList(type);
       });
       this.$EventBus.$on('searchInput', (search) => {
-        this.filteredList(search.searchOption, search.searchInput);
+        this.searchedList(search.searchOption, search.searchInput);
+      });
+      this.$EventBus.$on('searchOption', (search) => {
+        this.searchedList(search.searchOption, search.searchInput);
       });
     }
   }

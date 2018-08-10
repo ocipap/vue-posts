@@ -33,7 +33,7 @@
           </select>
         </div>
         <div class="is-pulled-left search__input__cover">
-          <input class="input" type="text" placeholder="Text input">
+          <input v-model="searchInput" class="input" type="text" placeholder="Text input">
         </div>
       </div>
     </div>
@@ -82,6 +82,9 @@ import constant from '../../../constant'
       },
       searchInput: function(){
         this.$EventBus.$emit('searchInput', {searchOption: this.searchOption,searchInput: this.searchInput})
+      },
+      searchOption: function(){
+        this.$EventBus.$emit('searchOption', {searchOption: this.searchOption,searchInput: this.searchInput})
       }
     }
   }

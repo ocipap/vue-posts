@@ -59,7 +59,6 @@ const actions = {
     let jwt = this._vm.$cookie.getCookie("infranics");
     let postIndex = payload.postIndex;
     let reply = JSON.stringify(payload);
-    console.log(reply);
     this._vm.$http.post(CONFIG.POST_REPLY.replace("${postIndex}", postIndex), reply, {
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +92,6 @@ const actions = {
     }).then(res => {
       if (res.status === 200) {
         alert("게시물 작성에 성공하였습니다.");
-        console.log(res);
         router.push({
           name: 'Board'
         });
