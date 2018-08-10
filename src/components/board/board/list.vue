@@ -77,7 +77,6 @@
         return ''
       },
       filteredList(type) {
-        console.log("hello");
         let filteredArray = [];
         if (type == "all") {
           this.filteredArray = [];
@@ -93,7 +92,6 @@
         }
       },
       searchedList(option, input){
-        console.log(option ,input)
       }
     },
     computed: {
