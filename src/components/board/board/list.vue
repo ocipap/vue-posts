@@ -44,7 +44,9 @@
     data() {
       return {
         pageNum: 0,
-        filteredArray: []
+        postList: [],
+        searchOption: '',
+        searchInput: ''
       }
     },
     methods: {
@@ -76,39 +78,42 @@
         }
         return ''
       },
-      filteredList(type) {
-        let filteredArray = [];
-        if (type == "all") {
-          this.filteredArray = [];
-          this.filteredArray = this.posts;
+      searchedList(option, input) {
+        if (option === "" || input === "") {
+          this.postList = this.posts;
+          return;
         } else {
-          for (let i = 0; i < this.posts.length; i++) {
-            if (this.posts[i].type == type) {
-              filteredArray.push(this.posts[i]);
-            }
-          }
-          this.filteredArray = [];
-          this.filteredArray = filteredArray;
+          this.filteredList(option, input);
         }
       },
-      searchedList(option, input){
+      filteredList(option, input) {
+        let searchArray = [];
+        for (let i = 0; i < this.posts.length; i++) {
+          if (this.posts[i][option].indexOf(input) != -1) {
+            searchArray.push(this.posts[i])
+          }
+        }
+        if (searchArray.length == 0) {
+          this.postList = this.posts;
+        }
+        this.postList = searchArray;
       }
     },
     computed: {
       pageCount() {
-        let page = Math.floor(this.filteredArray.length / 10);
-        return ((this.filteredArray.length % 10) > 0) ? page + 1 : page;
+        let page = Math.floor(this.postList.length / 10);
+        return ((this.postList.length % 10) > 0) ? page + 1 : page;
       },
       pagenatedData() {
+        if(this.postList.length == 0){
+          this.postList = this.posts;
+        }
         const start = this.pageNum * 10,
           end = start + 10;
-        return this.filteredArray.slice(start, end);
+        return this.postList.slice(start, end);
       }
     },
     created() {
-      this.$EventBus.$on('changeType', (type) => {
-        this.filteredList(type);
-      });
       this.$EventBus.$on('searchInput', (search) => {
         this.searchedList(search.searchOption, search.searchInput);
       });

@@ -1,29 +1,6 @@
 <template>
   <div class="search__cover has-background-light">
     <div class="columns">
-      <div class="column is-1 has-text-right search__header">구분</div>
-      <div class="column search__option__content">
-        <input type="radio" name="typeValue" id="all" v-model="typeValue" value="all">
-        <label id="all_label" for="all" class="button">
-          <span class="icon">
-            <i class="fas fa-check-circle"></i>
-          </span>
-          <span>전체</span>
-        </label>
-
-        <span v-for="(type, index) in types" :key="index">
-          <input type="radio" v-model="typeValue" name="typeValue" :value="type.type" :id="type.type">
-          <label :id="type.type+'_label'" :for="type.type" class="button">
-            <span class="icon">
-              <i class="fas fa-check-circle"></i>
-            </span>
-            <span>{{type.name}}</span>
-          </label>
-
-        </span>
-      </div>
-    </div>
-    <div class="columns">
       <div class="column is-1 has-text-right search__header">검색어</div>
       <div class="column search__input__content is-clearfix">
         <div class="select is-pulled-left">
@@ -44,23 +21,6 @@ import constant from '../../../constant'
   export default {
     data: function () {
       return {
-        types: [{
-            type: 'protect',
-            name: '보호조치'
-          },
-          {
-            type: 'api',
-            name: 'API'
-          },
-          {
-            type: 'environment',
-            name: '개발환경'
-          },
-          {
-            type: 'etc',
-            name: '기타'
-          },
-        ],
         searches: [
           {
             name: '제목',
@@ -68,12 +28,15 @@ import constant from '../../../constant'
           },
           {
             name: '작성자',
-            value: 'author',
+            value: 'writer',
+          },
+          {
+            name: '구분',
+            value: 'type'
           }
         ],
-        typeValue: "",
         searchOption: "",
-        searchInput: ""
+        searchInput: "",
       }
     },
     watch: {

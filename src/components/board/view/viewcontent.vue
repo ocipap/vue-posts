@@ -25,7 +25,8 @@
     props: ["post"],
     methods: {
       content(content){
-        return content.replace(/(\n|\r\n)/g, '</br>');
+        let result = content.replace(/(\n|\r\n)/g, '</br>');
+        return result;
       }
     }
   }
