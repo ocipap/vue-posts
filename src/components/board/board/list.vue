@@ -40,7 +40,7 @@
   } from 'vuex';
   export default {
     name: 'List',
-    props: ['posts'],
+    props: ["posts"],
     data() {
       return {
         pageNum: 0,
@@ -89,11 +89,11 @@
       filteredList(option, input) {
         let searchArray = [];
         for (let i = 0; i < this.posts.length; i++) {
-          var typeInput = input;
-          if(option == "type"){
-            typeInput = this.typeMatch(input);
+          let typeOption = this.posts[i][option];
+          if (option == "type") {
+            typeOption = this.typeMatch(typeOption);
           }
-          if (this.posts[i][option].indexOf(typeInput) != -1) {
+          if (typeOption.indexOf(input) != -1) {
             searchArray.push(this.posts[i])
           }
         }
@@ -109,7 +109,7 @@
         return ((this.postList.length % 10) > 0) ? page + 1 : page;
       },
       pagenatedData() {
-        if(this.postList.length == 0){
+        if (this.postList.length == 0) {
           this.postList = this.posts;
         }
         const start = this.pageNum * 10,

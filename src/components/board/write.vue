@@ -31,6 +31,27 @@
             </div>
           </div>
         </div>
+        <div class="columns" id="file">
+          <div class="column is-2">첨부파일</div>
+          <div class="column field">
+            <div class="file has-name is-primary">
+              <label class="file-label">
+                <input class="file-input" type="file" name="file" ref="file" @change="fileChange">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+                <span class="file-name">
+                  {{ uploadFileName }} <span v-if="uploadFileName">( {{uploadFileSize}} )</span> 
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
         <div class="button__group has-text-right">
           <button class="button" @click="writePost">
             <span class="icon">
@@ -80,7 +101,8 @@
         ],
         title: '',
         type: '',
-        content: ''
+        content: '',
+        file: ''
       }
     },
     methods: {
@@ -93,9 +115,27 @@
             title: this.title,
             type: this.type,
             writer: this.writer,
-            content: this.content
+            content: this.content,
+            file: this.file
           })
         }
+      },
+      fileChange: function(e){
+        this.file = e.target.files[0];
+      }
+    },
+    computed: {
+      uploadFileName(){
+        return this.file.name;
+      },
+      uploadFileSize(){
+        let size = this.file.size;
+        if(size / 1024 < 1){
+          return (size + "Byte");
+        }else {
+          return (Math.floor(size / 1024) + "KB");
+        }
+        
       }
     }
   }
@@ -143,4 +183,8 @@
     margin-left: 15px;
   }
 
+  .file-name{
+    width: 600px;
+    max-width: 600px;
+  }
 </style>

@@ -8,6 +8,14 @@ import CONSTANT from './constant'
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$convert = {};
+
+Vue.prototype.$convert.divtotext = function divtotext (content) {
+  return content.replace(/(<br>)/g, '\n');
+}
+Vue.prototype.$convert.texttodiv = function texttodiv (content) {
+  return content.replace(/(\n|\r\n)/g, '</br>');
+}
 
 Vue.prototype.$cookie = {};
 

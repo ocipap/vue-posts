@@ -32,11 +32,6 @@
       SearchBox,
       ListBox
     },
-    methods: {
-      show(){
-        alert(this.$store.state.postLists);
-      }
-    },
     created(){
       this.$store.dispatch(CONSTANT.LOAD_POSTS);
     },

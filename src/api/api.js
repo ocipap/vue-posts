@@ -15,7 +15,8 @@ export default {
   addPost(post, jwt) {
     return axios.post(CONFIG.POSTS, post, {
       headers: {
-        "infranics": jwt
+        "infranics": jwt,
+        'Content-Type': 'multipart/form-data'
       }
     })
   },

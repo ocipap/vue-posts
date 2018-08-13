@@ -27,8 +27,10 @@ export default {
   [CONSTANT.WRITE_REPLY](store, payload) {
     let jwt = this._vm.$cookie.getCookie("infranics");
     let postIndex = payload.postIndex;
-    let reply = JSON.stringify(payload);
-    api.addPostReply(postIndex, reply, jwt).then(res => {
+    let fd = new FormData();
+    fd.append("postIndex", payload.postIndex);
+    fd.append("content",payload.content);
+    api.addPostReply(postIndex, fd, jwt).then(res => {
       if (res.status === 200) {
         alert("댓글 작성에 성공하였습니다.")
         store.dispatch(CONSTANT.LOAD_POST_ONE, {
@@ -47,10 +49,15 @@ export default {
   },
   [CONSTANT.WRITE_POST](store, payload) {
     let jwt = this._vm.$cookie.getCookie("infranics");
-    let post = JSON.stringify(payload);
-    api.addPost(post, jwt).then(res => {
+    let fd = new FormData();
+    fd.append("type", payload.type);
+    fd.append("title", payload.title);
+    fd.append("content", payload.content);
+    fd.append("file", payload.file);
+    api.addPost(fd, jwt).then(res => {
       if (res.status === 200) {
         alert("게시물 작성에 성공하였습니다.");
+        console.log(res);
         router.push({
           name: 'Board'
         });
@@ -61,10 +68,12 @@ export default {
   },
   [CONSTANT.SING_IN](store, payload) {
     if (!store.getters.isLogin) {
-      let signin = JSON.stringify(payload)
-      api.signIn(signin).then(res => {
+      let fd = new FormData();
+      fd.append('identification', payload.identification);
+      fd.append('password', payload.password);
+      api.signIn(fd).then(res => {
         if (res.status === 200) {
-          this._vm.$cookie.setCookie('infranics', res.headers['infranics']);
+          this._vm.$cookie.setCookie('infranics', res.data);
           store.commit(CONSTANT.SET_LOGIN_STATUS, {
             isLogin: true
           });
@@ -81,7 +90,7 @@ export default {
     }
   },
   [CONSTANT.LOGOUT](store, payload) {
-    if (getters.isLogin) {
+    if (store.getters.isLogin) {
       this._vm.$cookie.deleteCookie("infranics");
       store.commit(CONSTANT.SET_LOGIN_STATUS, {
         isLogin: false
@@ -139,8 +148,11 @@ export default {
     }
   },
   [CONSTANT.SIGN_UP](store, payload) {
-    let signUp = JSON.stringify(payload);
-    api.signUp(signUp).then(res => {
+    let fd = new FormData();
+    fd.append("identification", payload.identification);
+    fd.append("password", payload.password);
+    fd.append("name", payload.name);
+    api.signUp(fd).then(res => {
       if (res.status === 200) {
         alert("회원가입에 성공하였습니다.");
         store.dispatch(CONSTANT.SIGN_UP, {

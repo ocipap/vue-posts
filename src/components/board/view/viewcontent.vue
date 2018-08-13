@@ -6,7 +6,7 @@
     </div>
     <div class="columns type__columns">
       <div class="column is-1">구분</div>
-      <div class="column">{{post.type}}</div>
+      <div class="column">{{typeMatch(post.type)}}</div>
     </div>
     <div class="columns author__columns">
       <div class="column is-1">작성자</div>
@@ -15,8 +15,10 @@
       <div class="column is-5">{{post.created}}</div>
     </div>
     <div v-html="Convertcontent(post.content)" class="view__content is-fullwidth"></div>
-    <hr>
-
+    <div class="columns file__columns">
+      <div class="column is-1">첨부파일</div>
+      <div class="column is-5">{{post.file}}</div>
+    </div>
   </div>
 </template>
 <script>
@@ -24,17 +26,25 @@
     name: "ShowContent",
     props: ["post"],
     methods: {
-      Convertcontent: function (postcontent) {
-        let result = postcontent.replace(/(\n|\r\n)/g, '</br>');
+      Convertcontent(content) {
+        let result = this.$convert.texttodiv(content);
         return result;
-      }
+      },
+      typeMatch(type) {
+        let typelist = {
+          'protect': '보호조치',
+          'api': 'API',
+          'environment': '개발환경',
+          'etc': '기타'
+        };
+        for (var key in typelist) {
+          if (key === type) {
+            return typelist[key];
+          }
+        }
+        return ''
+      },
     }
-    // computed: {
-    //   Convertcontent: function (postcontent) {
-    //     let result = postcontent.replace(/(\n|\r\n)/g, '</br>');
-    //     return result;
-    //   }
-    // }
   }
 
 </script>
@@ -45,6 +55,12 @@
 
   .columns {
     border-bottom: 1px solid #e0e0e0;
+  }
+
+  .file__columns {
+    margin-top: 12px;
+    border-top: 1px solid #e0e0e0;
+
   }
 
   .title__columns {
