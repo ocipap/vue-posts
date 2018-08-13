@@ -12,5 +12,6 @@ export default {
   CHANGE_SEARCH_TYPE: 'changeSearchType',
   CHANGE_SEARCH_OPTION: 'changeSearchOption',
   CHANGE_SEARCH_INPUT: 'changeSearchInput',
-  GET_USER_INFO: 'getUserInfo'
+  GET_USER_INFO: 'getUserInfo',
+  DOWNLOAD_FILE: 'downloadFile'
 }

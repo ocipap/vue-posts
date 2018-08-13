@@ -30,7 +30,7 @@
       <ul>
         <li v-for="(replylist, index) in pagenatedData" :key="index" class="reply__li">
           <p class="reply__list__author">{{replylist.writer}}</p>
-          <div v-html="replyContent(replylist.content)" class="reply__list__content"></div>
+          <div v-html="Convertcontent(replylist.content)" class="reply__list__content"></div>
         </li>
       </ul>
       <div class="paginate">
@@ -72,9 +72,10 @@ import {mapState} from 'vuex'
           this.replyInput = "";
         }
       },
-      replyContent(content){
-        return content.replace(/(\n|\r\n)/g, '</br>');
-      }
+      Convertcontent(content) {
+        let result = this.$convert.texttodiv(content);
+        return result;
+      },
     },
     computed: {
       pageCount() {

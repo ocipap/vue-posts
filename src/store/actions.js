@@ -56,8 +56,8 @@ export default {
     fd.append("file", payload.file);
     api.addPost(fd, jwt).then(res => {
       if (res.status === 200) {
+        store.dispatch(CONSTANT.LOAD_POSTS);
         alert("게시물 작성에 성공하였습니다.");
-        console.log(res);
         router.push({
           name: 'Board'
         });
@@ -164,5 +164,14 @@ export default {
       alert("회원가입에 실패하였습니다.");
       return;
     })
-  }
+  },
+  // [CONSTANT.DOWNLOAD_FILE](store, payload){
+  //   let jwt = this._vm.$cookie.getCookie("infranics");
+  //   api.downloadFile(payload, jwt).then(res => {
+  //     window.open(url,'_blank');
+  //   }).catch(err => {
+  //     console.log
+  //     alert("파일 다운에 실패하였습니다.");
+  //   })
+  // }
 }

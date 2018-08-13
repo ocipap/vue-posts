@@ -17,11 +17,18 @@
     <div v-html="Convertcontent(post.content)" class="view__content is-fullwidth"></div>
     <div class="columns file__columns">
       <div class="column is-1">첨부파일</div>
-      <div class="column is-5">{{post.file}}</div>
+      <div class="column is-5">
+        <a class="has-text-primary" id="downloadLink" @click="downloadPage()" v-if="post.fileName">
+          <span class="icon">
+            <i class="far fa-save"></i>
+          </span>{{post.fileName}}</a>
+      </div>
     </div>
   </div>
 </template>
 <script>
+  import CONFIG from '../../../config'
+  import CONSTANT from '../../../constant'
   export default {
     name: "ShowContent",
     props: ["post"],
@@ -44,6 +51,14 @@
         }
         return ''
       },
+      downloadPage() {
+        let url = this.downloadLink();
+        window.open(url, '_blank');
+      },
+      downloadLink() {
+        let postIndex = this.$route.params.postIndex;
+        return (CONFIG.BASE_URL+"/posts/" + postIndex + "/files");
+      }
     }
   }
 

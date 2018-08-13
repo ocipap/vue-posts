@@ -48,6 +48,13 @@ export default {
         "infranics": jwt
       }
     });
-  }
+  },
+  // downloadFile(url, jwt) {
+  //   return axios.get(url, {
+  //     headers: {
+  //       "infranics": jwt
+  //     }
+  //   })
+  // }
 
 }

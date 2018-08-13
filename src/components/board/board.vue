@@ -13,7 +13,7 @@
           <span>글쓰기</span>
         </router-link>
       </div>
-      <list-box style="margin-top: 20px;" :posts="postLists"></list-box>
+      <list-box style="margin-top: 20px;" :posts="postLists()"></list-box>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@
     created(){
       this.$store.dispatch(CONSTANT.LOAD_POSTS);
     },
-    computed: {
+    methods: {
       postLists:function(){
         return this.$store.getters.postLists;
       }
