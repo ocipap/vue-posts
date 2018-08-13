@@ -39,6 +39,7 @@
   </div>
 </template>
 <script>
+  import CONSTANT from '../../constant'
   export default {
     name: 'SignUp',
     data(){
@@ -55,7 +56,7 @@
           alert("입력값을 확인해주세요.");
           return;
         }else {
-          this.$store.dispatch('signup', {identification: this.identification, name: this.name, password: this.password});
+          this.$store.dispatch(CONSTANT.SIGN_UP, {identification: this.identification, name: this.name, password: this.password});
         }
       }
     }

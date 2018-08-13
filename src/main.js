@@ -1,17 +1,16 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import store from './store'
-import axios from 'axios'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import store from './store';
+import CONSTANT from './constant'
 
-Vue.config.productionTip = true
-
-Vue.prototype.$http = axios;
+Vue.config.productionTip = false;
 
 
 Vue.prototype.$cookie = {};
+
 Vue.prototype.$cookie.setCookie = function setCookie (name, value) {
   document.cookie = name + '=' + value +'; path=/';
 }
@@ -27,15 +26,15 @@ Vue.prototype.$cookie.getCookie = function getCookie (name) {
   return '';
 }
 
-Vue.prototype.$EventBus = new Vue();
-
 Vue.prototype.$cookie.deleteCookie = function deleteCookie (name) {
   Vue.prototype.$cookie.setCookie(name, '', -1)
 }
 
+Vue.prototype.$EventBus = new Vue();
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    store.dispatch('userInfo', (isLogin) => {
+    store.dispatch(CONSTANT.TOKEN_CHECK, (isLogin) => {
       if (isLogin) {
         next()
       } else {

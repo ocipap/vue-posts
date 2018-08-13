@@ -23,7 +23,7 @@
   import HeaderNav from '../default/navbar'
   import SearchBox from './board/search'
   import ListBox from './board/list'
-  import constant from '../../constant'
+  import CONSTANT from '../../constant'
   export default {
     name: 'Board',
     components: {
@@ -38,7 +38,7 @@
       }
     },
     created(){
-      this.$store.dispatch(constant.LOAD_POSTS);
+      this.$store.dispatch(CONSTANT.LOAD_POSTS);
     },
     computed: {
       postLists:function(){

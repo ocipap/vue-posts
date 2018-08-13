@@ -14,21 +14,27 @@
       <div class="column is-1">등록일</div>
       <div class="column is-5">{{post.created}}</div>
     </div>
-    <div v-html="content(post.content)" class="view__content is-fullwidth"></div>
+    <div v-html="Convertcontent(post.content)" class="view__content is-fullwidth"></div>
     <hr>
 
   </div>
 </template>
 <script>
   export default {
-    name: "ViewContent",
+    name: "ShowContent",
     props: ["post"],
     methods: {
-      content(content){
-        let result = content.replace(/(\n|\r\n)/g, '</br>');
+      Convertcontent: function (postcontent) {
+        let result = postcontent.replace(/(\n|\r\n)/g, '</br>');
         return result;
       }
     }
+    // computed: {
+    //   Convertcontent: function (postcontent) {
+    //     let result = postcontent.replace(/(\n|\r\n)/g, '</br>');
+    //     return result;
+    //   }
+    // }
   }
 
 </script>

@@ -3,7 +3,7 @@
     <header-nav></header-nav>
     <div class="wrapper">
       <board-header></board-header>
-      <view-content :post="postOne"></view-content>
+      <show-content :post="postOne"></show-content>
       <div class="field has-text-right list__btn">
         <router-link :to="{name: 'Board'}" class="button">
           <span class="icon">
@@ -18,17 +18,17 @@
 </template>
 <script>
 import {mapState} from 'vuex'
-  import constant from '../../constant'
+  import CONSTANT from '../../constant'
   import BoardHeader from '../default/boardheader';
   import HeaderNav from '../default/navbar';
-  import ViewContent from './view/viewcontent';
+  import ShowContent from './view/viewcontent';
   import ReplyContent from './view/replycontent';
   export default {
-    name: 'View',
+    name: 'Show',
     components: {
       BoardHeader,
       HeaderNav,
-      ViewContent,
+      ShowContent,
       ReplyContent
     },
     data: function () {
@@ -38,7 +38,7 @@ import {mapState} from 'vuex'
       }
     },
     created() {
-      this.$store.dispatch(constant.LOAD_POST_ONE,{postIndex: this.$route.params.postIndex});
+      this.$store.dispatch(CONSTANT.LOAD_POST_ONE,{postIndex: this.$route.params.postIndex});
     },
     computed:{
       replyList: function(){

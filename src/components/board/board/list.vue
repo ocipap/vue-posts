@@ -58,7 +58,7 @@
       },
       gotoView(postIndex) {
         this.$router.push({
-          name: "View",
+          name: "Show",
           params: {
             postIndex: postIndex
           }
@@ -89,7 +89,11 @@
       filteredList(option, input) {
         let searchArray = [];
         for (let i = 0; i < this.posts.length; i++) {
-          if (this.posts[i][option].indexOf(input) != -1) {
+          var typeInput = input;
+          if(option == "type"){
+            typeInput = this.typeMatch(input);
+          }
+          if (this.posts[i][option].indexOf(typeInput) != -1) {
             searchArray.push(this.posts[i])
           }
         }

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar has-background-primary">
     <div class="navbar-brand">
-      <router-link :to="{name:'Board'}" tag="h2" class="title is-3 has-text-white">INFRANICS BOARD</router-link>      
+      <router-link :to="{name:'Board'}" tag="h2" class="title is-3 has-text-white">INFRANICS BOARD</router-link>
     </div>
     <div class="navbar-menu">
       <div class="navbar-end">
@@ -18,27 +18,35 @@
   </nav>
 </template>
 <script>
-export default {
-  name: 'Navbar',
-  computed: {
-    isLogin(){
-      return this.$store.getters.isLogin
-    }
-  },
-  methods: {
-    logbtn: function(){
-      if(this.$store.getters.isLogin){
-        this.$store.dispatch('logout');
-      }else {
-        this.$router.push({name: 'Login'});
+  import CONSTANT from '../../constant';
+  export default {
+    name: 'Navbar',
+    computed: {
+      isLogin() {
+        return this.$store.getters.isLogin
       }
+    },
+    methods: {
+      logbtn: function () {
+        if (this.$store.getters.isLogin) {
+          this.$store.dispatch(CONSTANT.LOGOUT);
+        } else {
+          this.$router.push({
+            name: 'Login'
+          });
+        }
+      }
+    },
+    created() {
+      this.$store.dispatch(CONSTANT.GET_USER_INFO)
     }
   }
-}
+
 </script>
 <style scoped>
-  .navbar-brand{
+  .navbar-brand {
     padding-top: 9px;
     padding-left: 15px;
   }
+
 </style>

@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-  import constant from '../../constant'
+  import CONSTANT from '../../constant'
   import BoardHeader from '../default/boardheader';
   import HeaderNav from '../default/navbar';
   export default {
@@ -89,7 +89,7 @@
           alert("입력하지 않은 칸이 존재 합니다.");
           return;
         } else {
-          this.$store.dispatch(constant.WRITE_POST, {
+          this.$store.dispatch(CONSTANT.WRITE_POST, {
             title: this.title,
             type: this.type,
             writer: this.writer,

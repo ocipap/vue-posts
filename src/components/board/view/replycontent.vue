@@ -43,7 +43,7 @@
 </template>
 <script>
 import {mapState} from 'vuex'
-  import constant from '../../../constant';
+  import CONSTANT from '../../../constant';
   export default {
     name: "ReplyContent",
     data() {
@@ -65,7 +65,7 @@ import {mapState} from 'vuex'
         if (this.replyInput === "") {
           alert("댓글을 입력하지 않았습니다.");
         } else {
-          this.$store.dispatch(constant.WRITE_REPLY, {
+          this.$store.dispatch(CONSTANT.WRITE_REPLY, {
             postIndex: this.$route.params.postIndex,
             content: this.replyInput
           })

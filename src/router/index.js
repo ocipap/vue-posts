@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Login from '../components/user/login'
 import Signup from '../components/user/signup'
 import Board from '../components/board/board'
-import BoardView from '../components/board/view'
+import BoardShow from '../components/board/view'
 import BoardWrite from '../components/board/write'
 import BoardList from '../components/board/board/list'
 
@@ -25,8 +25,8 @@ export default new Router({
       }
     }, {
       path: '/view/:postIndex',
-      name: 'View',
-      component: BoardView,
+      name: 'Show',
+      component: BoardShow,
       meta: {
         requiresAuth: true
       }

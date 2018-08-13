@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from './modules/auth'
-import posts from './modules/posts'
+import state from './state'
+import mutations from './mutations'
+import actions from './actions'
+import getters from './getters'
+import es6Promise from 'es6-promise'
 
+es6Promise.polyfill();
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules: {
-    auth,
-    posts
-  }
-})
+const store = new Vuex.Store({
+  state,
+  mutations,
+  actions,
+  getters
+});
+
+export default store;

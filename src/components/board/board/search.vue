@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import constant from '../../../constant'
+import CONSTANT from '../../../constant'
   export default {
     data: function () {
       return {
