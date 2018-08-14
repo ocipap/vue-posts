@@ -33,22 +33,32 @@
         </div>
         <div class="columns" id="file">
           <div class="column is-2">첨부파일</div>
-          <div class="column field">
-            <div class="file has-name is-primary">
-              <label class="file-label">
-                <input class="file-input" type="file" name="file" ref="file" @change="fileChange">
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
+          <div class="column">
+            <div class="field">
+              <div class="file is-primary">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="file" @change="fileChange" multiple>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Primary file…
+                    </span>
                   </span>
-                  <span class="file-label">
-                    Choose a file…
-                  </span>
-                </span>
-                <span class="file-name">
-                  {{ uploadFileName }} <span v-if="uploadFileName">( {{uploadFileSize}} )</span> 
-                </span>
-              </label>
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <ul class="file-ul">
+                <li class="file-li" v-for="(file, index) in files" :key="index">
+                  <span class="icon">
+                    <i class="far fa-save"></i>
+                  </span> {{file.name}}
+                  <span class="filesize">({{filesizeFit(file.size)}})</span>
+                  <span class="has-background-danger has-text-white delete-tag" @click="removeFile(index)">삭제</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -102,7 +112,7 @@
         title: '',
         type: '',
         content: '',
-        file: ''
+        files: []
       }
     },
     methods: {
@@ -116,26 +126,25 @@
             type: this.type,
             writer: this.writer,
             content: this.content,
-            file: this.file
+            files: this.files
           })
         }
       },
-      fileChange: function(e){
-        this.file = e.target.files[0];
-      }
-    },
-    computed: {
-      uploadFileName(){
-        return this.file.name;
+      fileChange: function (e) {
+        let eventFile = e.target.files;
+        for (let i = 0; i < eventFile.length; i++) {
+          this.files.push(e.target.files[i]);
+        }
       },
-      uploadFileSize(){
-        let size = this.file.size;
-        if(size / 1024 < 1){
+      filesizeFit(size) {
+        if (size / 1024 < 1) {
           return (size + "Byte");
-        }else {
+        } else {
           return (Math.floor(size / 1024) + "KB");
         }
-        
+      },
+      removeFile(index){
+        this.files.splice(index, 1);
       }
     }
   }
@@ -177,14 +186,32 @@
 
   .button__group {
     margin-top: 15px;
+    margin-bottom: 100px;
   }
 
   .button__group>* {
     margin-left: 15px;
   }
 
-  .file-name{
-    width: 600px;
-    max-width: 600px;
+  .file-ul {
+    width: 100%;
+    display: block;
   }
+
+  .file-li {
+    height: 35px;
+  }
+
+  .filesize {
+    font-size: 15px;
+  }
+
+  .delete-tag {
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 3px 7px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
 </style>

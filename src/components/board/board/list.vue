@@ -23,7 +23,7 @@
           <td>{{typeMatch(list.type)}}</td>
           <td class="td__title">{{list.title}}</td>
           <td>{{list.writer}}</td>
-          <td>{{list.created}}</td>
+          <td>{{timeFit(list.created)}}</td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +63,9 @@
             postIndex: postIndex
           }
         });
+      },
+      timeFit(time){
+        return time.split(' ')[0];
       },
       typeMatch(type) {
         let typelist = {

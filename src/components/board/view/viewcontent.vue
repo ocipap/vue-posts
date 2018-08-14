@@ -12,16 +12,22 @@
       <div class="column is-1">작성자</div>
       <div class="column is-5">{{post.writer}}</div>
       <div class="column is-1">등록일</div>
-      <div class="column is-5">{{post.created}}</div>
+      <div class="column is-5">{{timeFit(post.created)}}</div>
     </div>
     <div v-html="Convertcontent(post.content)" class="view__content is-fullwidth"></div>
     <div class="columns file__columns">
       <div class="column is-1">첨부파일</div>
       <div class="column is-5">
-        <a class="has-text-primary" id="downloadLink" @click="downloadPage()" v-if="post.fileName">
-          <span class="icon">
-            <i class="far fa-save"></i>
-          </span>{{post.fileName}}</a>
+        <div class="field">
+          <ul class="file-ul">
+            <li class="file-li" v-for="(file) in post.files" :key="file.index" @click="downloadPage(file.index)">
+              <span class="icon">
+                <i class="fas fa-download"></i>
+              </span> {{file.name}}
+              <span class="filesize">( {{filesizeFit(file.size)}} )</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -34,7 +40,9 @@
     props: ["post"],
     methods: {
       Convertcontent(content) {
-        let result = this.$convert.texttodiv(content);
+        let convertContent = ""
+        convertContent = content;
+        let result = this.$convert.texttodiv(convertContent);
         return result;
       },
       typeMatch(type) {
@@ -51,14 +59,25 @@
         }
         return ''
       },
-      downloadPage() {
-        let url = this.downloadLink();
+      downloadPage(fileIndex) {
+        let url = this.downloadLink(fileIndex);
         window.open(url, '_blank');
       },
-      downloadLink() {
+      downloadLink(fileIndex) {
         let postIndex = this.$route.params.postIndex;
-        return (CONFIG.BASE_URL+"/posts/" + postIndex + "/files");
-      }
+        return (CONFIG.BASE_URL + "/posts/" + postIndex + "/files/" + fileIndex);
+      },
+      timeFit(time) {
+        return time.split(' ')[0];
+      },
+      filesizeFit(size) {
+        if (size / 1024 < 1) {
+          return (size + "Byte");
+        } else {
+          return (Math.floor(size / 1024) + "KB");
+        }
+      },
+      
     }
   }
 
@@ -120,6 +139,19 @@
 
   .view__content::-webkit-scrollbar-thumb:hover {
     background: rgb(1, 158, 135);
+  }
+
+  .file-ul {
+    width: 100%;
+    display: block;
+  }
+
+  .file-li {
+    height: 35px;
+  }
+
+  .filesize {
+    font-size: 15px;
   }
 
 </style>

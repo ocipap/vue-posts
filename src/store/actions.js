@@ -53,7 +53,11 @@ export default {
     fd.append("type", payload.type);
     fd.append("title", payload.title);
     fd.append("content", payload.content);
-    fd.append("file", payload.file);
+    console.log(payload.files);
+    for(let i = 0; i < payload.files.length; i++){
+      let file = payload.files[i];
+      fd.append('files',file);
+    }
     api.addPost(fd, jwt).then(res => {
       if (res.status === 200) {
         store.dispatch(CONSTANT.LOAD_POSTS);

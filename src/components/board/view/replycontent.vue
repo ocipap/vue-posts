@@ -73,7 +73,9 @@ import {mapState} from 'vuex'
         }
       },
       Convertcontent(content) {
-        let result = this.$convert.texttodiv(content);
+        let convertContent = ""
+        convertContent = content;
+        let result = this.$convert.texttodiv(convertContent);
         return result;
       },
     },
