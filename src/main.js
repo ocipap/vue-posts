@@ -11,12 +11,13 @@ Vue.config.productionTip = false;
 Vue.prototype.$convert = {};
 
 Vue.prototype.$convert.divtotext = function divtotext (content) {
-  let convertContent = content;
-  return convertContent.replace(/(<br>)/g, '\n');
+  content = typeof content !== 'undefined' ? content : '';
+  return content.replace(/(<br>)/g, '\n');
 }
 Vue.prototype.$convert.texttodiv = function texttodiv (content) {
-  let convertContent = content;
-  return convertContent.replace(/(\n|\r\n)/g, '</br>');
+  
+  content = typeof content !== 'undefined' ? content : '';
+  return content.replace(/(\n|\r\n)/g, '</br>');
 }
 
 Vue.prototype.$cookie = {};

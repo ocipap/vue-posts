@@ -29,7 +29,7 @@ export default {
     let postIndex = payload.postIndex;
     let fd = new FormData();
     fd.append("postIndex", payload.postIndex);
-    fd.append("content",payload.content);
+    fd.append("content", payload.content);
     api.addPostReply(postIndex, fd, jwt).then(res => {
       if (res.status === 200) {
         alert("댓글 작성에 성공하였습니다.")
@@ -54,9 +54,9 @@ export default {
     fd.append("title", payload.title);
     fd.append("content", payload.content);
     console.log(payload.files);
-    for(let i = 0; i < payload.files.length; i++){
+    for (let i = 0; i < payload.files.length; i++) {
       let file = payload.files[i];
-      fd.append('files',file);
+      fd.append('files', file);
     }
     api.addPost(fd, jwt).then(res => {
       if (res.status === 200) {
@@ -70,7 +70,7 @@ export default {
       alert("글 작성 중 오류가 발생했습니다.");
     })
   },
-  [CONSTANT.SING_IN](store, payload) {
+  [CONSTANT.SIGN_IN](store, payload) {
     if (!store.getters.isLogin) {
       let fd = new FormData();
       fd.append('identification', payload.identification);
@@ -159,23 +159,28 @@ export default {
     api.signUp(fd).then(res => {
       if (res.status === 200) {
         alert("회원가입에 성공하였습니다.");
-        store.dispatch(CONSTANT.SIGN_UP, {
+        store.dispatch(CONSTANT.SIGN_IN, {
           identification: payload.identification,
           password: payload.password
-        });
+        })
       }
     }).catch(err => {
+      console.log(err);
       alert("회원가입에 실패하였습니다.");
       return;
     })
   },
-  // [CONSTANT.DOWNLOAD_FILE](store, payload){
-  //   let jwt = this._vm.$cookie.getCookie("infranics");
-  //   api.downloadFile(payload, jwt).then(res => {
-  //     window.open(url,'_blank');
-  //   }).catch(err => {
-  //     console.log
-  //     alert("파일 다운에 실패하였습니다.");
-  //   })
-  // }
+  /*[CONSTANT.GET_FILE](store, payload){
+    let postIndex = payload.postIndex;
+    let fileIndex = payload.fileIndex;
+    let jwt = this._vm.$cookie.getCookie("infranics");
+    api.getFile(postIndex, fileIndex, jwt).then(res => {
+      let url = window.URL.createObjectURL(new Blob([res.data]));
+      console.log(url);
+      return url;
+    }).catch(err => {
+      console.log(err);
+      alert("파일 다운에 실패하였습니다.");
+    })
+  }*/
 }

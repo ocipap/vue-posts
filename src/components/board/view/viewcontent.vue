@@ -68,6 +68,7 @@
         return (CONFIG.BASE_URL + "/posts/" + postIndex + "/files/" + fileIndex);
       },
       timeFit(time) {
+        time = typeof time !== 'undefined' ? time : '';
         return time.split(' ')[0];
       },
       filesizeFit(size) {
@@ -148,6 +149,7 @@
 
   .file-li {
     height: 35px;
+    cursor: pointer;
   }
 
   .filesize {

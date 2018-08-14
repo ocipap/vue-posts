@@ -29,14 +29,14 @@ export default {
     });
   },
   signIn(signin) {
-    return axios.post(CONFIG.SING_IN, signin, {
+    return axios.post(CONFIG.SIGN_IN, signin, {
       headers: {
         'Content-Type': 'application/json',
       }
     })
   },
   signUp(signUp) {
-    return axios.post(CONFIG.SING_UP, signUp, {
+    return axios.post(CONFIG.SIGN_UP, signUp, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -49,13 +49,12 @@ export default {
       }
     });
   },
-  
-  // downloadFile(url, jwt) {
-  //   return axios.get(url, {
-  //     headers: {
-  //       "infranics": jwt
-  //     }
-  //   })
-  // }
+  /*getFile(postIndex, fileIndex, jwt) {
+    return axios({
+      url: CONFIG.FILES.replace("${postIndex}", postIndex).replace("${fileIndex}", fileIndex),
+      method: 'GET',
+      responseType: 'blob'
+    })
+  }*/
 
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="list__cover">
-    <table class="table is-fullwidth">
+    <table class="table is-fullwidth is-hoverable">
       <colgroup>
         <col style="width:10%">
         <col style="width:15%">
@@ -64,7 +64,8 @@
           }
         });
       },
-      timeFit(time){
+      timeFit(time){        
+        time = typeof time !== 'undefined' ? time : '';
         return time.split(' ')[0];
       },
       typeMatch(type) {
@@ -162,6 +163,10 @@
 
   .paginate>* {
     margin: 0px 10px;
+  }
+
+  tbody tr {
+    cursor: pointer;
   }
 
 </style>

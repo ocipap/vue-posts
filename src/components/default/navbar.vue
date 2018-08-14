@@ -47,6 +47,7 @@
   .navbar-brand {
     padding-top: 9px;
     padding-left: 15px;
+    cursor: pointer;
   }
 
 </style>

@@ -16,7 +16,7 @@ export default {
   [CONSTANT.LOAD_REPLYS](state, payload) {
     state.replyList = payload;
   },
-  [CONSTANT.LOAD_REPLY_ONE](state, payload) {
-    state.replyList = payload;
-  }
+  /*[CONSTANT.GET_FILES](state, payload){
+    state.fileList = payload
+  }*/
 }

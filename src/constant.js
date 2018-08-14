@@ -5,7 +5,7 @@ export default {
   WRITE_POST: 'writePost',
   WRITE_REPLY: 'writeReply',
   SIGN_UP: 'signUp',
-  SING_IN: 'signIn',
+  SIGN_IN: 'signIn',
   LOGOUT: 'logout',
   TOKEN_CHECK: 'tokenCheck',
   SET_LOGIN_STATUS: 'setLoginStatus',
@@ -13,5 +13,6 @@ export default {
   CHANGE_SEARCH_OPTION: 'changeSearchOption',
   CHANGE_SEARCH_INPUT: 'changeSearchInput',
   GET_USER_INFO: 'getUserInfo',
-  DOWNLOAD_FILE: 'downloadFile'
+  GET_FILES: 'getFiles',
+  GET_FILE: 'getFile'
 }

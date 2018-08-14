@@ -7,5 +7,6 @@ export default {
   isLogin: false,
   postLists: [],
   postOne: {},
-  replyList: []
+  replyList: [],
+  fileList: []
 }

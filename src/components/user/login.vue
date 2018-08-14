@@ -46,7 +46,7 @@
           alert("입력하지 않은 칸이 존재 합니다.");
           return;
         }else {
-          this.$store.dispatch(CONSTANT.SING_IN, {identification: this.identification, password: this.password})
+          this.$store.dispatch(CONSTANT.SIGN_IN, {identification: this.identification, password: this.password})
         }
       }
     }

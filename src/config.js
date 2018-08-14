@@ -5,7 +5,8 @@ export default {
   POSTS: BASE_URL + "/posts",
   POST_REPLY: BASE_URL + "/posts/${postIndex}/replies",
   POST_ONE: BASE_URL + '/posts/${postIndex}',
-  SING_IN: BASE_URL + "/users/signIn",
-  SING_UP: BASE_URL + "/users/signUp",
-  USER_AUTH: BASE_URL + "/users/information"
+  SIGN_IN: BASE_URL + "/users/signIn",
+  SIGN_UP: BASE_URL + "/users/signUp",
+  USER_AUTH: BASE_URL + "/users/information",
+  //FILES: BASE_URL + "/posts/${postIndex}/files/${fileIndex}"
 }
