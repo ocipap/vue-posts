@@ -1,4 +1,4 @@
-var BASE_URL = "http://192.168.1.20:9999"
+var BASE_URL = "http://192.168.3.250:9998"
 
 export default {
   BASE_URL,
