@@ -63,7 +63,7 @@ export default {
         store.dispatch(CONSTANT.LOAD_POSTS);
         alert("게시물 작성에 성공하였습니다.");
         router.push({
-          name: 'Board'
+          name: 'Board',
         });
       }
     }).catch(err => {
