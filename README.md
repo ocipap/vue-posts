@@ -24,6 +24,10 @@ vue.js 프레임워크를 사용하여 만든 게시판입니다.
 
 ### 스크린샷
 
+![](https://github.com/ocipap/vue-posts/blob/master/screen1.png)
+
+![](https://github.com/ocipap/vue-posts/blob/master/screen2.png)
+
 ### API 서버주소
 
 https://github.com/sociablesasha/BBS
