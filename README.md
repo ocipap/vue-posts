@@ -1,21 +1,29 @@
-# vue-client
+# vue-posts
 
-> A Vue.js project
+vue.js 프레임워크를 사용하여 만든 게시판입니다.
 
-## Build Setup
+### 개발 기능
 
-``` bash
-# install dependencies
-npm install
+- 글 목록
+- 글 읽기
+- 글 작성
+- 글 삭제
+- 글 수정
+- 댓글 작성
+- 첨부파일 파일 업로드
+- 첨부파일 파일 다운로드
+- 글 검색
 
-# serve with hot reload at localhost:8080
-npm run dev
+### 시용기술
 
-# build for production with minification
-npm run build
+- vue.js
+- vue-router
+- bulma
+- vuex
+- axios
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+### 스크린샷
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### API 서버주소
+
+https://github.com/sociablesasha/BBS
